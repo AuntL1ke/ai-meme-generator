@@ -16,19 +16,32 @@ env/
 
 # IDEs and editors
 .vscode/
+.vscode/.ropeproject/
 .idea/
 *.swp
 
 # System files
 .DS_Store
 Thumbs.db
+.AppleDouble
+.LSOverride
 
-# Static files (optional, якщо є генерація)
+# Static files 
 staticfiles/
+media/
 
-# Migrations (можеш лишити, якщо потрібно в репо)
+# Migrations 
 **/migrations/*.pyc
 **/migrations/__pycache__/
+
+# Testing
+htmlcov/
+.coverage
+coverage.xml
+.pytest_cache/
+
+# Node.js 
+node_modules/
 
 # Others
 *.bak

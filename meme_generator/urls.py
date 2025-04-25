@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from memes import views  # 👈 імпортуй з нового app
+from memes import views  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name="index")
+    path('', views.index, name="index"),
+    path('history/', views.history, name="history")
 ]

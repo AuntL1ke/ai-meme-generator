@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History of Memes</title>
+    <link rel="stylesheet" href="{% static 'memes/style.css' %}">
+</head>
+<body>
+    <h1>Meme History</h1>
+
+    <a href="/" style="font-size:20px;">Back to Generator</a>
+    <br><br>
+
+    {% if memes %}
+        {% for meme in memes %}
+            <div style="margin-bottom: 40px;">
+                <h3>{{ meme.prompt }}</h3>
+                <p><i>{{ meme.created_at|date:"d M Y H:i" }}</i></p>
+                <img src="data:image/png;base64,{{ meme.image_base64 }}" alt="Generated Meme" style="max-width:500px;">
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No memes yet!</p>
+    {% endif %}
+    {% if memes.has_other_pages %}
+    <div style="margin-top: 30px;">
+        {% if memes.has_previous %}
+            <a href="?page={{ memes.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span style="margin: 0 10px;">Page {{ memes.number }} of {{ memes.paginator.num_pages }}</span>
+
+        {% if memes.has_next %}
+            <a href="?page={{ memes.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% endif %}
+
+</body>
+</html>

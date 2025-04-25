@@ -3,22 +3,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AI Meme Generator</title>
+    <title>Meme Generator</title>
     <link rel="stylesheet" href="{% static 'memes/style.css' %}">
 </head>
 <body>
+    <a href="{% url 'history' %}">
+        <button type="button" style="margin-bottom: 20px;">
+            View Meme History
+        </button>
+    </a>
+    
     <h1>AI Meme Generator</h1>
 
     <form method="post">
         {% csrf_token %}
-        <textarea name="prompt" id="id_prompt" placeholder="Enter your meme idea..." maxlength="1000" required></textarea>
-        <br>
+        <textarea name="prompt" id="id_prompt" placeholder="Enter your meme idea..." maxlength="300" required></textarea>
+        <br><br>
         <button type="submit">Generate Meme</button>
     </form>
 
-    {% if image_data %}
-        <h2>Your Meme:</h2>
-        <img src="data:image/png;base64,{{ image_data }}" alt="Generated Meme" style="max-width:90%; margin-top:20px;">
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
     {% endif %}
+
+    {% if image_data %}
+        <img src="data:image/png;base64,{{ image_data }}" alt="Generated Meme" style="max-width:90%;">
+        <br><br>
+        <a href="data:image/png;base64,{{ image_data }}" download="meme.png">
+            <button type="button">Download Meme</button>
+        </a>
+    {% endif %}
+
+    
 </body>
 </html>
